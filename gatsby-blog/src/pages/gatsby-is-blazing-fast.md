@@ -1,6 +1,7 @@
 ---
 title: "Gatsby is blazing fast"
 date: "2020-07-11"
+featuredImage: ../images/gatsby-is-blazing-fast-featured-image.jpg
 ---
 
 Gatsby helps you to make blazing fast modern websites by building in a number of performance optimizations. These include efficient bundling, code splitting, inlined critical CSS, and lazy loading of assets.

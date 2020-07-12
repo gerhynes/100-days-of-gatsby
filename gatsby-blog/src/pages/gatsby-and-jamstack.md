@@ -1,6 +1,7 @@
 ---
 title: "Gatsby and the JAMstack"
 date: "2020-07-10"
+featuredImage: ../images/gatsby-and-the-jamstack-featured-image.png
 ---
 
 Gatsby works great as part of the JAMstack, a modern way to build websites and web applications.
