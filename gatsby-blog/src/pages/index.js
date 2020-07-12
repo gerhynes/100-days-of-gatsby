@@ -3,10 +3,12 @@ import { Link, graphql } from "gatsby"
 import { css } from "@emotion/core"
 import { rhythm } from "../utils/typography"
 import Layout from "../components/layout"
+import SEO from "../components/seo"
 
 export default function Home({ data }) {
   return (
     <Layout>
+      <SEO title="Home" />
       <h1>Here's to #100DaysOfGatsby</h1>
       <div>
         <img
