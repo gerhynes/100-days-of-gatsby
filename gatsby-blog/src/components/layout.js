@@ -36,22 +36,23 @@ export default function Layout({ children }) {
           {data.site.siteMetadata.title}
         </h3>
       </Link>
+
       <Link
-        to={`/about/`}
+        to={`/contact/`}
         css={css`
           float: right;
           margin-left: 1rem;
         `}
       >
-        About
+        Contact
       </Link>
       <Link
-        to={`/contact/`}
+        to={`/about/`}
         css={css`
           float: right;
         `}
       >
-        Contact
+        About
       </Link>
       {children}
     </div>
