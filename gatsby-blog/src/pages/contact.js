@@ -4,10 +4,10 @@ import Layout from "../components/layout"
 import SEO from "../components/seo"
 import SignupForm from "../components/signupForm"
 
-export default function About({ data }) {
+export default function Contact({ data }) {
   return (
     <Layout>
-      <SEO title="About" />
+      <SEO title="Contact" />
       <h1>Join the {data.site.siteMetadata.title} Mailing List</h1>
       <SignupForm />
     </Layout>

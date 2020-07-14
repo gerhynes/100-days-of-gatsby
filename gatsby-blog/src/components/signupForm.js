@@ -105,7 +105,7 @@ const SignupForm = () => {
         />
         <Select label="Job Type" name="jobType">
           <option value="">Select a job type</option>
-          <option value="design">Dsigner</option>
+          <option value="design">Designer</option>
           <option value="development">Developer</option>
           <option value="product">Product Manager</option>
           <option value="other">Other</option>
