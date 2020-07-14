@@ -1,12 +1,64 @@
 import React from "react"
-import { Formik, Field, Form, ErrorMessage } from "formik"
+import { Formik, Form, useField } from "formik"
 import * as Yup from "yup"
 import "./signupForm.css"
+
+const TextInput = ({ label, ...props }) => {
+  // useField() returns [formik.getFieldProps(), formik.getFieldMeta()]
+  // which we can spread on <input> and also replace ErrorMessage entirely.
+  const [field, meta] = useField(props)
+  return (
+    <>
+      <label htmlFor={props.id || props.name}>{label}</label>
+      <input className="text-input" {...field} {...props} />
+      {meta.touched && meta.error ? (
+        <div className="error">{meta.error}</div>
+      ) : null}
+    </>
+  )
+}
+
+const Checkbox = ({ children, ...props }) => {
+  // We need to tell useField what type of input this is
+  // since React treats radios and checkboxes differently
+  // than inputs/select/textarea.
+  const [field, meta] = useField({ ...props, type: "checkbox" })
+  return (
+    <>
+      <label className="checkbox">
+        <input type="checkbox" {...field} {...props} />
+        {children}
+      </label>
+      {meta.touched && meta.error ? (
+        <div className="error">{meta.error}</div>
+      ) : null}
+    </>
+  )
+}
+
+const Select = ({ label, ...props }) => {
+  const [field, meta] = useField(props)
+  return (
+    <>
+      <label htmlFor={props.id || props.name}>{label}</label>
+      <select {...field} {...props} />
+      {meta.touched && meta.error ? (
+        <div className="error">{meta.error}</div>
+      ) : null}
+    </>
+  )
+}
 
 const SignupForm = () => {
   return (
     <Formik
-      initialValues={{ firstName: "", lastName: "", email: "" }}
+      initialValues={{
+        firstName: "",
+        lastName: "",
+        email: "",
+        acceptedTerms: false, // added for checkbox
+        jobType: "", // added for select
+      }}
       validationSchema={Yup.object({
         firstName: Yup.string()
           .max(50, "Must be 50 characters or fewer")
@@ -15,6 +67,15 @@ const SignupForm = () => {
           .max(50, "Must be 50 characters or fewer")
           .required("Required"),
         email: Yup.string().email("Invalid email address").required("Required"),
+        acceptedTerms: Yup.boolean()
+          .required("Required")
+          .oneOf([true], "You must accept the terms and conditions."),
+        jobType: Yup.string()
+          .required("Required")
+          .oneOf(
+            ["design", "development", "product", "other"],
+            "Invalid job type"
+          ),
       })}
       onSubmit={(values, { setSubmitting }) => {
         setTimeout(() => {
@@ -24,15 +85,34 @@ const SignupForm = () => {
       }}
     >
       <Form>
-        <label htmlFor="firstName">First Name</label>
-        <Field name="firstName" type="text" />
-        <ErrorMessage name="firstName" />
-        <label htmlFor="lasttName">Last Name</label>
-        <Field name="lastName" type="text" />
-        <ErrorMessage name="lastName" />
-        <label htmlFor="email">Email Address</label>
-        <Field name="email" type="email" />
-        <ErrorMessage name="email" />
+        <TextInput
+          label="First Name"
+          name="firstName"
+          type="text"
+          placeholder="Your First Name"
+        />
+        <TextInput
+          label="Last Name"
+          name="lastName"
+          type="text"
+          placeholder="Your Last Name"
+        />
+        <TextInput
+          label="Email Address"
+          name="email"
+          type="email"
+          placeholder="Don't say yahoo"
+        />
+        <Select label="Job Type" name="jobType">
+          <option value="">Select a job type</option>
+          <option value="design">Dsigner</option>
+          <option value="development">Developer</option>
+          <option value="product">Product Manager</option>
+          <option value="other">Other</option>
+        </Select>
+        <Checkbox name="acceptedTerms">
+          I accept the terms and conditions
+        </Checkbox>
         <button type="submit">Submit</button>
       </Form>
     </Formik>
