@@ -9,8 +9,10 @@ const TextInput = ({ label, ...props }) => {
   const [field, meta] = useField(props)
   return (
     <>
-      <label htmlFor={props.id || props.name}>{label}</label>
-      <input className="text-input" {...field} {...props} />
+      <label htmlFor={props.id || props.name} id={props.id}>
+        {label}
+        <input className="text-input" {...field} {...props} />
+      </label>
       {meta.touched && meta.error ? (
         <div className="error">{meta.error}</div>
       ) : null}
@@ -25,7 +27,11 @@ const Checkbox = ({ children, ...props }) => {
   const [field, meta] = useField({ ...props, type: "checkbox" })
   return (
     <>
-      <label className="checkbox">
+      <label
+        className="checkbox"
+        htmlFor={props.id || props.name}
+        id={props.id}
+      >
         <input type="checkbox" {...field} {...props} />
         {children}
       </label>
@@ -40,8 +46,10 @@ const Select = ({ label, ...props }) => {
   const [field, meta] = useField(props)
   return (
     <>
-      <label htmlFor={props.id || props.name}>{label}</label>
-      <select {...field} {...props} />
+      <label htmlFor={props.id || props.name} id={props.id}>
+        {label}
+        <select {...field} {...props} />
+      </label>
       {meta.touched && meta.error ? (
         <div className="error">{meta.error}</div>
       ) : null}
