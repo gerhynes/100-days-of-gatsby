@@ -9,10 +9,8 @@ const TextInput = ({ label, ...props }) => {
   const [field, meta] = useField(props)
   return (
     <>
-      <label htmlFor={props.id || props.name} id={props.id}>
-        {label}
-        <input className="text-input" {...field} {...props} />
-      </label>
+      <label htmlFor={props.id || props.name}>{label}</label>
+      <input className="text-input" id={props.id} {...field} {...props} />
       {meta.touched && meta.error ? (
         <div className="error">{meta.error}</div>
       ) : null}
@@ -27,12 +25,8 @@ const Checkbox = ({ children, ...props }) => {
   const [field, meta] = useField({ ...props, type: "checkbox" })
   return (
     <>
-      <label
-        className="checkbox"
-        htmlFor={props.id || props.name}
-        id={props.id}
-      >
-        <input type="checkbox" {...field} {...props} />
+      <label className="checkbox" htmlFor={props.id || props.name}>
+        <input type="checkbox" id={props.id} {...field} {...props} />
         {children}
       </label>
       {meta.touched && meta.error ? (
@@ -46,10 +40,8 @@ const Select = ({ label, ...props }) => {
   const [field, meta] = useField(props)
   return (
     <>
-      <label htmlFor={props.id || props.name} id={props.id}>
-        {label}
-        <select {...field} {...props} />
-      </label>
+      <label htmlFor={props.id || props.name}>{label}</label>
+      <select id={props.id} {...field} {...props} />
       {meta.touched && meta.error ? (
         <div className="error">{meta.error}</div>
       ) : null}
@@ -97,28 +89,31 @@ const SignupForm = () => {
           label="First Name"
           name="firstName"
           type="text"
+          id="firstName"
           placeholder="Your First Name"
         />
         <TextInput
           label="Last Name"
           name="lastName"
           type="text"
+          id="lastName"
           placeholder="Your Last Name"
         />
         <TextInput
           label="Email Address"
           name="email"
           type="email"
+          id="email"
           placeholder="Don't say yahoo"
         />
-        <Select label="Job Type" name="jobType">
+        <Select label="Job Type" name="jobType" id="jobType">
           <option value="">Select a job type</option>
           <option value="design">Designer</option>
           <option value="development">Developer</option>
           <option value="product">Product Manager</option>
           <option value="other">Other</option>
         </Select>
-        <Checkbox name="acceptedTerms">
+        <Checkbox name="acceptedTerms" id="acceptedTerms">
           I accept the terms and conditions
         </Checkbox>
         <button type="submit">Submit</button>
