@@ -6,6 +6,7 @@ import Layout from "../components/layout"
 import SEO from "../components/seo"
 
 export default function Home({ data }) {
+  const { edges: posts } = data.allMdx
   return (
     <Layout>
       <SEO title="Home" />
@@ -16,54 +17,34 @@ export default function Home({ data }) {
           alt="Gatsby saying Cheers, Old Sport"
         />
         <p>Cheers, Old Sport.</p>
-        <h4>{data.allMarkdownRemark.totalCount} Posts</h4>
-        {data.allMarkdownRemark.edges.map(({ node }) => (
-          <div key={node.id}>
-            <Link
-              to={node.fields.slug}
-              css={css`
-                text-decoration: none;
-                color: inherit;
-              `}
-            >
-              <h3
-                css={css`
-                  margin-bottom: ${rhythm(1 / 4)};
-                `}
-              >
-                {node.frontmatter.title}{" "}
-                <span
-                  css={css`
-                    color: #bbb;
-                  `}
-                >
-                  — {node.frontmatter.date}
-                </span>
-              </h3>
-              <p>{node.excerpt}</p>
-            </Link>
-          </div>
-        ))}
+        <ul style={{ listStyle: `none` }}>
+          {posts.map(({ node: post }) => (
+            <li key={post.id}>
+              <Link to={post.fields.slug}>
+                <h2>{post.frontmatter.title}</h2>
+              </Link>
+              <p>{post.excerpt}</p>
+            </li>
+          ))}
+        </ul>
       </div>
     </Layout>
   )
 }
 
-export const query = graphql`
-  query {
-    allMarkdownRemark(sort: { fields: [frontmatter___date], order: DESC }) {
-      totalCount
+export const pageQuery = graphql`
+  query blogIndex {
+    allMdx {
       edges {
         node {
           id
+          excerpt
           frontmatter {
             title
-            date(formatString: "DD MMMM, YYYY")
           }
           fields {
             slug
           }
-          excerpt
         }
       }
     }
