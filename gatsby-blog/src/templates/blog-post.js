@@ -3,6 +3,7 @@
 // import Layout from "../components/layout"
 // import SEO from "../components/seo"
 // import Img from "gatsby-image"
+// import { MDXRenderer } from "gatsby-plugin-mdx"
 
 // export default function BlogPost({ data }) {
 //   const post = data.markdownRemark
@@ -14,7 +15,7 @@
 //       <div>
 //         <h1>{post.frontmatter.title}</h1>
 //         <Img fluid={featuredImgFluid} />
-//         <div dangerouslySetInnerHTML={{ __html: post.html }} />
+//         <MDXRenderer>{post.body}</MDXRenderer>
 //       </div>
 //     </Layout>
 //   )
@@ -22,8 +23,8 @@
 
 // export const query = graphql`
 //   query($slug: String!) {
-//     markdownRemark(fields: { slug: { eq: $slug } }) {
-//       html
+//     mdx(fields: { slug: { eq: $slug } }) {
+//       body
 //       frontmatter {
 //         title
 //         featuredImage {

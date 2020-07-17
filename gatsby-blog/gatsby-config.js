@@ -30,7 +30,6 @@ module.exports = {
     `gatsby-plugin-sharp`,
     `gatsby-remark-images`,
     `gatsby-transformer-sharp`,
-    `gatsby-transformer-remark`,
     `gatsby-plugin-emotion`,
     {
       resolve: `gatsby-plugin-typography`,
@@ -51,7 +50,6 @@ module.exports = {
             resolve: `gatsby-remark-images`,
             options: {
               maxWidth: 800,
-              sizeByPixelDensity: true,
             },
           },
         ],

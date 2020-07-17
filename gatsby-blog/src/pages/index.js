@@ -1,7 +1,5 @@
 import React from "react"
 import { Link, graphql } from "gatsby"
-import { css } from "@emotion/core"
-import { rhythm } from "../utils/typography"
 import Layout from "../components/layout"
 import SEO from "../components/seo"
 
