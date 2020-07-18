@@ -84,7 +84,13 @@ const SignupForm = () => {
         }, 400)
       }}
     >
-      <Form>
+      <Form
+        name="gatsbySignupForm"
+        method="POST"
+        data-netlify="true"
+        data-netlify-honeypot="bot-field"
+      >
+        <input type="hidden" name="form-name" value="gatsbySignupForm" />
         <TextInput
           label="First Name"
           name="firstName"
