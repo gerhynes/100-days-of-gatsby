@@ -3,6 +3,13 @@ import { Formik, Form, useField } from "formik"
 import * as Yup from "yup"
 import "./signupForm.css"
 
+// Helper function for Netlify forms
+const encode = data => {
+  return Object.keys(data)
+    .map(key => encodeURIComponent(key) + "=" + encodeURIComponent(data[key]))
+    .join("&")
+}
+
 const TextInput = ({ label, ...props }) => {
   // useField() returns [formik.getFieldProps(), formik.getFieldMeta()]
   // which we can spread on <input> and also replace ErrorMessage entirely.
