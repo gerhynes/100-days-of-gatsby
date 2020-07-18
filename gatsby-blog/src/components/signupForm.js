@@ -77,11 +77,20 @@ const SignupForm = () => {
             "Invalid job type"
           ),
       })}
-      onSubmit={(values, { setSubmitting }) => {
-        setTimeout(() => {
-          alert(JSON.stringify(values, null, 2))
-          setSubmitting(false)
-        }, 400)
+      onSubmit={(values, actions) => {
+        fetch("/", {
+          method: "POST",
+          headers: { "Content-Type": "application/x-www-form-urlencoded" },
+          body: encode({ "form-name": "gatsbySignupForm", ...values }),
+        })
+          .then(() => {
+            alert("Success")
+            actions.resetForm()
+          })
+          .catch(() => {
+            alert("Error")
+          })
+          .finally(() => actions.setSubmitting(false))
       }}
     >
       <Form
