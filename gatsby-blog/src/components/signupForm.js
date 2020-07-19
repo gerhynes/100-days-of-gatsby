@@ -1,4 +1,5 @@
 import React from "react"
+import { navigate } from "gatsby"
 import { Formik, Form, useField } from "formik"
 import * as Yup from "yup"
 import "./signupForm.css"
@@ -91,13 +92,13 @@ const SignupForm = () => {
           body: encode({ "form-name": "gatsbySignupForm", ...values }),
         })
           .then(() => {
-            alert("Success")
             actions.resetForm()
+            actions.setSubmitting(false)
+            navigate("/thanks/")
           })
           .catch(() => {
             alert("Error")
           })
-          .finally(() => actions.setSubmitting(false))
       }}
     >
       <Form
@@ -126,7 +127,7 @@ const SignupForm = () => {
           name="email"
           type="email"
           id="email"
-          placeholder="Don't say yahoo"
+          placeholder="Your email"
         />
         <Select label="Job Type" name="jobType" id="jobType">
           <option value="">Select a job type</option>
