@@ -1,5 +1,6 @@
 import React from "react"
 import { graphql } from "gatsby"
+import Img from "gatsby-image"
 import { MDXProvider } from "@mdx-js/react"
 import { MDXRenderer } from "gatsby-plugin-mdx"
 import { Link } from "gatsby"
@@ -13,6 +14,7 @@ export default function PageTemplate({ data: { mdx } }) {
     <Layout>
       <SEO title={mdx.frontmatter.title} />
       <h1>{mdx.frontmatter.title}</h1>
+      <Img fluid={mdx.frontmatter.featuredImage} alt={mdx.frontmatter.title} />
       <MDXProvider components={shortcodes}>
         <MDXRenderer>{mdx.body}</MDXRenderer>
       </MDXProvider>
@@ -27,6 +29,13 @@ export const pageQuery = graphql`
       body
       frontmatter {
         title
+        featuredImage {
+          childImageSharp {
+            fluid(maxWidth: 800) {
+              ...GatsbyImageSharpFluid
+            }
+          }
+        }
       }
     }
   }

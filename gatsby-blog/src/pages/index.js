@@ -1,5 +1,6 @@
 import React from "react"
 import { Link, graphql } from "gatsby"
+import Img from "gatsby-image"
 import Layout from "../components/layout"
 import SEO from "../components/seo"
 
@@ -10,10 +11,7 @@ export default function Home({ data }) {
       <SEO title="Home" />
       <h1>Here's to #100DaysOfGatsby</h1>
       <div>
-        <img
-          src="https://res.cloudinary.com/gerhynes/image/upload/q_auto/v1594412361/gatsby-old-sport_dw9kf4.jpg"
-          alt="Gatsby saying Cheers, Old Sport"
-        />
+        <Img fluid={data.file.childImageSharp.fluid} alt="Jay Gatsby" />
         <p>Cheers, Old Sport.</p>
         <ul style={{ listStyle: `none` }}>
           {posts.map(({ node: post }) => (
@@ -31,7 +29,7 @@ export default function Home({ data }) {
 }
 
 export const pageQuery = graphql`
-  query blogIndex {
+  query {
     allMdx {
       edges {
         node {
@@ -43,6 +41,13 @@ export const pageQuery = graphql`
           fields {
             slug
           }
+        }
+      }
+    }
+    file(relativePath: { eq: "images/gatsby-old-sport.jpg" }) {
+      childImageSharp {
+        fluid {
+          ...GatsbyImageSharpFluid
         }
       }
     }
