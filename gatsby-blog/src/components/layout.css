@@ -1,3 +1,5 @@
+@import url("https://fonts.googleapis.com/css2?family=Fira+Sans&family=Playfair+Display:wght@700&display=swap");
+
 html {
   font-family: sans-serif;
   -ms-text-size-adjust: 100%;
@@ -619,4 +621,17 @@ pre tt:after {
   html {
     font-size: 100%;
   }
+}
+
+/* Replace typography.js */
+
+body {
+  font-family: "Fira Sans", sans-serif;
+}
+
+h1,
+h2,
+h3,
+h4 {
+  font-family: "Playfair Display", serif;
 }

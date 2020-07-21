@@ -30,13 +30,13 @@ module.exports = {
     `gatsby-plugin-sharp`,
     `gatsby-remark-images`,
     `gatsby-transformer-sharp`,
-    `gatsby-plugin-emotion`,
-    {
-      resolve: `gatsby-plugin-typography`,
-      options: {
-        pathToConfigModule: `src/utils/typography`,
-      },
-    },
+    // `gatsby-plugin-emotion`,
+    // {
+    //   resolve: `gatsby-plugin-typography`,
+    //   options: {
+    //     pathToConfigModule: `src/utils/typography`,
+    //   },
+    // },
     `gatsby-plugin-react-helmet`,
     {
       resolve: `gatsby-plugin-mdx`,
