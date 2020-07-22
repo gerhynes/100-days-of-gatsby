@@ -28,7 +28,7 @@ export const query = graphql`
     file(relativePath: { eq: "images/gatsby-about.jpg" }) {
       childImageSharp {
         fluid {
-          ...GatsbyImageSharpFluid
+          ...GatsbyImageSharpFluid_withWebp
         }
       }
     }
