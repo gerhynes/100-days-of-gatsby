@@ -635,3 +635,26 @@ h3,
 h4 {
   font-family: "Playfair Display", serif;
 }
+
+.layout {
+  margin: 0 auto;
+  max-width: 800px;
+  padding: 2.5rem;
+  padding-top: 2rem;
+}
+
+.nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.nav-link-main {
+  margin-bottom: 2.5rem;
+  display: inline-block;
+  font-style: normal;
+}
+
+.nav-link-secondary {
+  margin-right: 1rem;
+}

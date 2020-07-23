@@ -15,46 +15,16 @@ export default function Layout({ children }) {
     `
   )
   return (
-    <div
-      className="layout"
-      style={{
-        margin: `0 auto`,
-        maxWidth: `800px`,
-        padding: `2.5rem`,
-        paddingTop: `2rem`,
-      }}
-    >
-      <nav
-        className="nav"
-        style={{
-          display: `flex`,
-          alignItems: `center`,
-          justifyContent: `space-between`,
-        }}
-      >
+    <div className="layout">
+      <nav className="nav">
         <Link to={`/`}>
-          <h3
-            className="nav-link-main"
-            style={{
-              marginBottom: `2.5rem`,
-              display: `inline-block`,
-              fontStyle: `normal`,
-            }}
-          >
-            {data.site.siteMetadata.title}
-          </h3>
+          <h3 className="nav-link-main">{data.site.siteMetadata.title}</h3>
         </Link>
         <div>
-          <Link
-            class="nav-link-secondary"
-            to={`/contact/`}
-            style={{ marginRight: `1rem` }}
-          >
-            Contact
-          </Link>
           <Link class="nav-link-secondary" to={`/about/`}>
             About
           </Link>
+          <Link to={`/contact/`}>Contact</Link>
         </div>
       </nav>
       {children}
