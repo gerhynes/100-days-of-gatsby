@@ -10,7 +10,7 @@ exports.onCreateNode = ({ node, actions, getNode }) => {
     createNodeField({
       name: `slug`,
       node,
-      value,
+      value: node.frontmatter.slug,
     })
   }
 }
@@ -26,13 +26,13 @@ exports.createPages = async ({ graphql, actions }) => {
         edges {
           node {
             id
+            body
             fields {
               slug
             }
             frontmatter {
               title
             }
-            body
           }
         }
       }
