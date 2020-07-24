@@ -35,7 +35,11 @@ const Checkbox = ({ children, ...props }) => {
   const [field, meta] = useField({ ...props, type: "checkbox" })
   return (
     <>
-      <label className="checkbox" htmlFor={props.id || props.name}>
+      <label
+        style={{ flexDirection: `row` }}
+        className="checkbox"
+        htmlFor={props.id || props.name}
+      >
         <input type="checkbox" id={props.id} {...field} {...props} />
         {children}
       </label>
