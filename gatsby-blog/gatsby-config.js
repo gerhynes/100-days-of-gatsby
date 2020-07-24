@@ -3,6 +3,7 @@ module.exports = {
     title: `Gatsby Blog`,
     description: `A Gatsby blog for #100DaysOfGatsby`,
     author: `Gerard Hynes`,
+    siteUrl: `https://focused-keller-023ec5.netlify.app/`,
   },
   plugins: [
     `gatsby-plugin-preact`,
@@ -31,13 +32,6 @@ module.exports = {
     `gatsby-plugin-sharp`,
     `gatsby-remark-images`,
     `gatsby-transformer-sharp`,
-    // `gatsby-plugin-emotion`,
-    // {
-    //   resolve: `gatsby-plugin-typography`,
-    //   options: {
-    //     pathToConfigModule: `src/utils/typography`,
-    //   },
-    // },
     `gatsby-plugin-react-helmet`,
     {
       resolve: `gatsby-plugin-mdx`,
@@ -56,6 +50,7 @@ module.exports = {
         ],
       },
     },
+    `gatsby-plugin-advanced-sitemap`,
     {
       resolve: `gatsby-plugin-manifest`,
       options: {
