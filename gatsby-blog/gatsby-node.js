@@ -5,12 +5,12 @@ exports.onCreateNode = ({ node, actions, getNode }) => {
   const { createNodeField } = actions
 
   if (node.internal.type === `Mdx`) {
-    const value = createFilePath({ node, getNode })
+    const generatedSlug = createFilePath({ node, getNode })
 
     createNodeField({
       name: `slug`,
       node,
-      value: node.frontmatter.slug,
+      value: node.frontmatter.slug || generatedSlug,
     })
   }
 }
