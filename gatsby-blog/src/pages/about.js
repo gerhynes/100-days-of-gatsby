@@ -9,7 +9,11 @@ export default function About({ data }) {
     <Layout>
       <SEO title="About" />
       <h1>An about page for a {data.site.siteMetadata.title}</h1>
-      <Img fluid={data.file.childImageSharp.fluid} alt="Jay Gatsby" />
+      <Img
+        style={{ marginBottom: `1rem` }}
+        fluid={data.file.childImageSharp.fluid}
+        alt="Jay Gatsby"
+      />
       <p>
         If you want to learn about Gatsby, you can't do better than to read the{" "}
         <a href="https://www.gatsbyjs.org/docs/">official docs</a>.

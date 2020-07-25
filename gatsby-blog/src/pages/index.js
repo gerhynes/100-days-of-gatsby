@@ -11,7 +11,11 @@ export default function Home({ data }) {
       <SEO title="Home" />
       <h1>Here's to #100DaysOfGatsby</h1>
       <div>
-        <Img fluid={data.file.childImageSharp.fluid} alt="Jay Gatsby" />
+        <Img
+          style={{ marginBottom: `1rem` }}
+          fluid={data.file.childImageSharp.fluid}
+          alt="Jay Gatsby"
+        />
         <p>Cheers, Old Sport.</p>
         <ul style={{ listStyle: `none` }}>
           {posts.map(({ node: post }) => (
@@ -19,6 +23,7 @@ export default function Home({ data }) {
               <Link to={post.fields.slug}>
                 <h2>{post.frontmatter.title}</h2>
               </Link>
+              <p>{post.frontmatter.date}</p>
               <p>{post.excerpt}</p>
             </li>
           ))}
@@ -37,6 +42,7 @@ export const pageQuery = graphql`
           excerpt
           frontmatter {
             title
+            date
           }
           fields {
             slug
