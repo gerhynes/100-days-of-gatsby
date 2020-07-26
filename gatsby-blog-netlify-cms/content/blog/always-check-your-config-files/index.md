@@ -5,11 +5,10 @@ description: A short post on why checking your config files is better than
   redeploying three times
 image: update-config-files.png
 ---
-![Git commits for this project](./update-config-files.png)
 
 - Check siteUrl
 - Check main branch name
 - Check where content is being stored
 - Check .toml files
 - Monorepos are no fun
-- Mkae sure you know where media files are being saved
+- Make sure you know where media files are being saved
