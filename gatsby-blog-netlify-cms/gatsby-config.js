@@ -6,7 +6,7 @@ module.exports = {
       summary: `who is building a bunch of Gatsby sites right now.`,
     },
     description: `A blog integrating Netlify CMS.`,
-    siteUrl: `https://focused-keller-023ec5.netlify.app/`,
+    siteUrl: `https://gracious-varahamihira-cd7906.netlify.app/`,
     social: {
       twitter: `Gerard_K_Hynes`,
     },
