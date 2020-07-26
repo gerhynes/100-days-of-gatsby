@@ -1,6 +1,6 @@
 import React from "react"
 import { Link, graphql } from "gatsby"
-
+import Image from "gatsby-image"
 import Bio from "../components/bio"
 import Layout from "../components/layout"
 import SEO from "../components/seo"
@@ -8,6 +8,7 @@ import { rhythm, scale } from "../utils/typography"
 
 const BlogPostTemplate = ({ data, pageContext, location }) => {
   const post = data.markdownRemark
+  const featuredImage = post.frontmatter.image.childImageSharp.fluid
   const siteTitle = data.site.siteMetadata.title
   const { previous, next } = pageContext
 
@@ -22,7 +23,6 @@ const BlogPostTemplate = ({ data, pageContext, location }) => {
           <h1
             style={{
               marginTop: rhythm(1),
-              marginBottom: 0,
             }}
           >
             {post.frontmatter.title}
@@ -36,6 +36,11 @@ const BlogPostTemplate = ({ data, pageContext, location }) => {
           >
             {post.frontmatter.date}
           </p>
+          <Image
+            fluid={featuredImage}
+            alt={post.frontmatter.title}
+            style={{ marginBottom: rhythm(1) }}
+          />
         </header>
         <section dangerouslySetInnerHTML={{ __html: post.html }} />
         <hr
@@ -93,6 +98,13 @@ export const pageQuery = graphql`
       html
       frontmatter {
         title
+        image {
+          childImageSharp {
+            fluid {
+              ...GatsbyImageSharpFluid
+            }
+          }
+        }
         date(formatString: "MMMM DD, YYYY")
         description
       }
