@@ -1,6 +1,7 @@
 import React from "react"
 import { Link } from "gatsby"
-
+import Search from "./search"
+const searchIndices = [{ name: `Pages`, title: `Pages` }]
 import { rhythm, scale } from "../utils/typography"
 
 const Layout = ({ location, title, children }) => {
@@ -56,7 +57,10 @@ const Layout = ({ location, title, children }) => {
         padding: `${rhythm(1.5)} ${rhythm(3 / 4)}`,
       }}
     >
-      <header>{header}</header>
+      <header>
+        <Search indices={searchIndices} />
+        {header}
+      </header>
       <main>{children}</main>
       <footer>
         © {new Date().getFullYear()}, Built with
