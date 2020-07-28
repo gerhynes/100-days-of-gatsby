@@ -1,8 +1,9 @@
 import React from "react"
 import { Link } from "gatsby"
 import Search from "./search"
-const searchIndices = [{ name: `Pages`, title: `Pages` }]
 import { rhythm, scale } from "../utils/typography"
+
+const searchIndices = [{ name: `Pages`, title: `Pages` }]
 
 const Layout = ({ location, title, children }) => {
   const rootPath = `${__PATH_PREFIX__}/`

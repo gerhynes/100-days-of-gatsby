@@ -3,7 +3,7 @@ import SearchResult from "./search-result"
 
 const Popover = css`
   max-height: 80vh;
-  overflow: scroll;
+  overflow-y: scroll;
   -webkit-overflow-scrolling: touch;
   position: absolute;
   z-index: 2;

@@ -5,7 +5,7 @@ module.exports = {
     title: `Gatsby with Algolia Search`,
     author: {
       name: `Gerard Hynes`,
-      summary: `who is building a bunch of Gatsby sites and apps.`,
+      summary: `, who is building a bunch of Gatsby sites and apps.`,
     },
     description: `A Gatsby blog with search Algolia for search.`,
     siteUrl: `https://gatsby-starter-blog-demo.netlify.app/`,

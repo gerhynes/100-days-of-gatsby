@@ -3,7 +3,8 @@ import SearchBox from "./search-box"
 
 const open = css`
   width: 10em;
-  background: ${({ theme }) => theme.background};
+  background: #f5f5f5;
+  background: ${({ hasFocus }) => (hasFocus ? "#fff" : "#f5f5f5")};
   cursor: text;
   margin-left: -1.6em;
   padding-left: 1.6em;
@@ -25,10 +26,11 @@ export default styled(SearchBox)`
 
   .SearchInput {
     outline: none;
-    border: ${({ hasFocus }) => (hasFocus ? "auto" : "none")};
+    border: ${({ hasFocus }) =>
+      hasFocus ? "1px solid hsl(204, 100%, 70%)" : "none"};
     font-size: 1em;
     transition: 100ms;
-    border-radius: 2px;
+    border-radius: 0.375rem;
     color: ${({ theme }) => theme.foreground};
     ::placeholder {
       color: ${({ theme }) => theme.faded};
