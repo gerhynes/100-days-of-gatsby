@@ -20,17 +20,35 @@ You could incorporate an open source search engine into your site (which every u
 
 ## Algolia
 
-[Algolia](https://www.algolia.com/) is a service which hosts search indices and a search engine, which are accessible via an API. They also provide components for building the search UI.
+[Algolia](https://www.algolia.com/) is a service which hosts search indices and a search engine, which are accessible via an API. They also provide components for building the search UI. Their free tier is a great way to get started adding search to your site.
 
-[`gatsby-plugin-algolia`](https://github.com/algolia/gatsby-plugin-algolia) creates an index of your site's pages at build time. You can use GraphQl to control which pages and what information are included. This index is then stored by Algolia and accessible for future searches.
+The quite useful [`gatsby-plugin-algolia`](https://github.com/algolia/gatsby-plugin-algolia) creates an index of your site's pages at build time. You can use GraphQl to control which pages and what information are included. This index is then stored by Algolia and accessible for future searches.
 
 Gatsby have an excellent [tutorial for adding Algolia to a Gatsby site](https://www.gatsbyjs.org/docs/adding-search-with-algolia/).
 
 ## Gatsby and Algolia
 
-This project use `gatsby-plugin-algolia` to generate the search index.
+This project uses `gatsby-plugin-algolia` to generate the search index.
 
-`src/utils/algolia-queries.js` configures the plugin, telling it which information to index. In this case the slug, `excerpt` field, and frontmatter `title` field from the Markdown blogposts.
+`src/utils/algolia-queries.js` configures the plugin, telling it which information to index. In this case, the slug, `excerpt` field, and frontmatter `title` field from the Markdown blogposts.
+
+Run `gatby build` and you should see output like this:
+
+```
+success Building static HTML for pages - 26.421s - 6/6 0.23/s
+Algolia: 1 queries to index
+Algolia: query 0: executing query
+Algolia: query 0: graphql resulted in 2 records
+Algolia: query 0: splitting in 1 jobs
+```
+
+Go to your Algolia account, to Indices and then to Pages and you'll see the indexed page data.
+
+The search UI is built with ;[React InstantSearch](https://www.algolia.com/doc/guides/building-search-ui/what-is-instantsearch/react/), [Styled Components](https://styled-components.com/) and [Styled Icons](https://styled-icons.js.org/).
+
+This demo app is hosted on [Netlify](https://www.netlify.com/). If you deploy your app to Netlify, you will need to add your Algolia API credentials as environmental variables or the build will fail.
+
+On Netlify, go to Setting, then Build & Deploy, then Environment, then Environmental variables and add your API keys.
 
 ## Run this project locally
 
