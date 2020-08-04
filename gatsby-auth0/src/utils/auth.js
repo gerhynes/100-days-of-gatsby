@@ -22,19 +22,22 @@ export const login = () => {
   auth.authorize()
 }
 
-export const setSession = authResult => {
-  tokens.idToken = authResult.idToken
-  tokens.accessToken = authResult.accessToken
+// allow for calback to be passed through
+export const setSession = (cb = () => {}) => (err, authResult) => {
+  if (err) {
+    throw new Error(err)
+  }
+
+  if (authResult && authResult.accessToken && authResult.idToken) {
+    tokens.idToken = authResult.idToken
+    tokens.accessToken = authResult.accessToken
+  }
+}
+
+export const checkSession = callback => {
+  auth.checkSession({}, setSession(callback))
 }
 
 export const handleAuthentication = () => {
-  auth.parseHash((err, authResult) => {
-    if (err) {
-      throw new Error(err)
-    }
-
-    if (authResult && authResult.accessToken && authResult.idToken) {
-      setSession(authResult)
-    }
-  })
+  auth.parseHash(setSession())
 }
