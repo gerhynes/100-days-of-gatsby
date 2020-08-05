@@ -6,6 +6,7 @@ class SessionCheck extends React.Component {
     loading: true,
   }
   constructor() {
+    super()
     this.handleCheckSession = this.handleCheckSession.bind(this)
   }
 

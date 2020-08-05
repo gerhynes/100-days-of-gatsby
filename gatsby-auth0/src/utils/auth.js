@@ -19,18 +19,27 @@ const auth = isBrowser
   : {}
 
 export const login = () => {
+  if (!isBrowser) {
+    return
+  }
+
   auth.authorize()
 }
 
 // allow for calback to be passed through
-export const setSession = (cb = () => {}) => (err, authResult) => {
+const setSession = (cb = () => {}) => (err, authResult) => {
   if (err) {
-    throw new Error(err)
+    if (err.error === "login_required") {
+      login()
+      // throw new Error(JSON.stringify(err))
+    }
   }
 
   if (authResult && authResult.accessToken && authResult.idToken) {
     tokens.idToken = authResult.idToken
     tokens.accessToken = authResult.accessToken
+
+    cb()
   }
 }
 
