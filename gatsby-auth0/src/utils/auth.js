@@ -28,8 +28,18 @@ export const login = () => {
   if (!isBrowser) {
     return
   }
-
   auth.authorize()
+}
+
+export const logout = () => {
+  tokens.accessToken = false
+  tokens.idToken = false
+  user = {}
+  localStorage.setItem("isLoggedIn", false)
+
+  auth.logout({
+    returnTo: location.href,
+  })
 }
 
 // allow for calback to be passed through
@@ -47,12 +57,19 @@ const setSession = (cb = () => {}) => (err, authResult) => {
     auth.client.userInfo(tokens.accessToken, (_err, userProfile) => {
       user = userProfile
 
+      localStorage.setItem("isLoggedIn", true)
+
       cb()
     })
   }
 }
 
 export const checkSession = callback => {
+  const isLoggedIn = localStorage.getItem("isLoggedIn")
+  if (isLoggedIn === "false") {
+    callback()
+    return
+  }
   auth.checkSession({}, setSession(callback))
 }
 

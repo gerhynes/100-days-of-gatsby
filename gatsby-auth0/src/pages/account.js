@@ -1,7 +1,7 @@
 import React from "react"
 import { Link } from "gatsby"
 import { Router } from "@reach/router"
-import { login, isAuthenticated, getProfile } from "../utils/auth"
+import { login, logout, isAuthenticated, getProfile } from "../utils/auth"
 
 const Home = () => <p>Home</p>
 const Settings = () => <p>Settings</p>
@@ -10,6 +10,7 @@ const Billing = () => <p>Billing</p>
 const Account = () => {
   if (!isAuthenticated()) {
     login()
+    return <p>Redirecting to login...</p>
   }
 
   const user = getProfile()
@@ -22,6 +23,16 @@ const Account = () => {
         <Link to="/account/settings/">Settings</Link>
         {` `}
         <Link to="/account/billing/">Billing</Link>
+        {` `}
+        <a
+          href="#logout"
+          onClick={e => {
+            logout()
+            e.preventDefault()
+          }}
+        >
+          Log Out
+        </a>
       </nav>
       <pre>{JSON.stringify(user, null, 2)}</pre>
       <Router>
