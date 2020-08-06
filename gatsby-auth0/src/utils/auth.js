@@ -7,6 +7,12 @@ const tokens = {
   accessToken: false,
 }
 
+let user = {}
+
+export const isAuthenticated = () => {
+  return tokens.idToken !== false
+}
+
 // Only instantiate Auth0 if we’re in the browser.
 const auth = isBrowser
   ? new auth0.WebAuth({
@@ -31,7 +37,6 @@ const setSession = (cb = () => {}) => (err, authResult) => {
   if (err) {
     if (err.error === "login_required") {
       login()
-      // throw new Error(JSON.stringify(err))
     }
   }
 
@@ -39,7 +44,11 @@ const setSession = (cb = () => {}) => (err, authResult) => {
     tokens.idToken = authResult.idToken
     tokens.accessToken = authResult.accessToken
 
-    cb()
+    auth.client.userInfo(tokens.accessToken, (_err, userProfile) => {
+      user = userProfile
+
+      cb()
+    })
   }
 }
 
@@ -49,4 +58,8 @@ export const checkSession = callback => {
 
 export const handleAuthentication = () => {
   auth.parseHash(setSession())
+}
+
+export const getProfile = () => {
+  return user
 }
